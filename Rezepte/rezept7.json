@@ -1,0 +1,9 @@
+{
+    "Rezeptname": "Kaiserschmarrn",
+    "Rezeptkategorie": ["Vorspeisen", "Omeletten"],
+    "Bild": "Beispiel-Bild",
+    "Bewertung": 8,
+    "Kommentar": "Das beste oesterreichische Gericht",
+    "Zeitaufwand": 30,
+    "Herkunft": "Oesterreich"
+}

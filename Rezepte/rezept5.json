@@ -1,0 +1,9 @@
+{
+    "Rezeptname": "Caeser Salat",
+    "Rezeptkategorie": ["Salate", "Vorspeisen"],
+    "Bild": "Beispiel-Bild",
+    "Kommentar": [
+        "Dieses Rezept fand ich nicht so gut",
+        "Ist sehr gut angekommen"
+    ]
+}

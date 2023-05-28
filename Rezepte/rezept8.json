@@ -1,0 +1,9 @@
+{
+    "Rezeptname": "Hot-Dog",
+    "Rezeptkategorie": ["Grill", "Sandwich"],
+    "Bild": "Beispiel-Bild",
+    "Bewertung": 9.5,
+    "Kommentar": "Raffael Barths Lieblingsessen",
+    "Zeitaufwand": 10,
+    "Herkunft": "USA"
+}
