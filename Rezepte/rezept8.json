@@ -1,7 +1,7 @@
 {
     "Rezeptname": "Hot-Dog",
     "Rezeptkategorie": ["Grill", "Sandwich"],
-    "Bild": "Beispiel-Bild",
+    "Bild": "https://static.onecms.io/wp-content/uploads/sites/43/2022/09/09/268494_Basic-Air-Fryer-Hot-Dogs_Buckwheat-Queen_SERP_5844319_original-4x3-1.jpg",
     "Bewertung": 9.5,
     "Kommentar": "Raffael Barths Lieblingsessen",
     "Zeitaufwand": 10,
