@@ -19,46 +19,22 @@ app.get('/', async (req, res) => {
     }
 
     //Alle Json-Dateien einfügen. Auskommentiert, weil die Jsons sonst immer wieder eingefügt werden würden!
-
-    /*
-    const fs = require('fs');
-    const path = require('path');
-
-    const rezepteOrdner = '../Rezepte'; // Pfad zum Rezepte-Ordner
-    const rezeptDateien = fs.readdirSync(rezepteOrdner)
-      .filter(file => path.extname(file) === '.json')
-      .map(file => path.join(rezepteOrdner, file));
-
-    rezeptDateien.forEach(jsonFile => {
-      const jsonDocument = require(jsonFile);
-
-      db.insert(jsonDocument, (err, body) => {
-        if (err) {
-          console.error(`Fehler beim Einfügen von ${jsonFile}:`, err);
-          return;
-        }
-
-        console.log(`JSON-Datei erfolgreich eingefügt: ${jsonFile}`);
-      });
-    });
-    */
+    //insertRezepte();
+    
     const docs = response.rows.map(row => row.doc);
-    // Rezeptname
-    // Rezeptkategorie
-    // Bild
-    // Kommentar
-    // Bewertung
-    // Zeitaufwand
-    // Herkunft
     const tableRows = docs.map(doc => {
+      if (doc._id.startsWith("_")) 
+        return;
+
       return `<tr>
                 <td>${doc.Rezeptname}</td>
                 <td>${doc.Rezeptkategorie}</td>
-                <td>${doc.Bild}</td>
+                <td>${doc.Anleitung}</td>
                 <td>${doc.Kommentar}</td>
                 <td>${doc.Bewertung}</td>
                 <td>${doc.Zeitaufwand}</td>
                 <td>${doc.Herkunft}</td>
+                <td><img src="${doc.Bild}"></td>
               </tr>`
     }).join('');
 
@@ -74,6 +50,16 @@ app.get('/', async (req, res) => {
       ${searchForm}
       <table>
       <style>
+      html {
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      }
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 150px;
+      }
+
       table {
         border-collapse: collapse;
         width: 100%;
@@ -106,11 +92,12 @@ app.get('/', async (req, res) => {
           <tr>
             <th>Rezeptname</th>
             <th>Rezeptkategorie</th>
-            <th>Bild</th>
+            <th>Anleitung</th>
             <th>Kommentar</th>
             <th>Bewertung</th>
             <th>Zeitaufwand</th>
             <th>Herkunft</th>
+            <th>Bild</th>
           </tr>
         </thead>
         <tbody>
@@ -129,3 +116,26 @@ app.get('/', async (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+function insertRezepte() {
+  const fs = require('fs');
+    const path = require('path');
+
+    const rezepteOrdner = '../Rezepte'; 
+    const rezeptDateien = fs.readdirSync(rezepteOrdner)
+      .filter(file => path.extname(file) === '.json')
+      .map(file => path.join(rezepteOrdner, file));
+
+    rezeptDateien.forEach(jsonFile => {
+      const jsonDocument = require(jsonFile);
+
+      db.insert(jsonDocument, (err, body) => {
+        if (err) {
+          console.error(`Fehler beim Einfügen von ${jsonFile}:`, err);
+          return;
+        }
+
+        console.log(`JSON-Datei erfolgreich eingefügt: ${jsonFile}`);
+      });
+    });
+}
