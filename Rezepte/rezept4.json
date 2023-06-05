@@ -1,6 +1,8 @@
 {
     "Rezeptname": "Riz Casimir",
     "Rezeptkategorie": "Reisgerichte",
+    "Zutaten": ["Reis", "Pouletfleisch", "Ananas"],
+    "Anleitung": "1. Fleisch anbraten | 2. Reis kochen | 3. Sauce herstellen | 4. Schön anrichten | 5. Geniessen",
     "Bild": "https://recipecontent.fooby.ch/12214_3-2_1920-1280.jpg",
     "Kommentar": "Das ist das Lieblingsessen meiner Kinder"
 }

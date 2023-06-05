@@ -1,6 +1,8 @@
 {
     "Rezeptname": "Kaiserschmarrn",
     "Rezeptkategorie": ["Vorspeisen", "Omeletten"],
+    "Zutaten": ["Eier", "Milch", "Puderzucker", "Mehl"],
+    "Anleitung": "1. Zutaten mischen | 2. In Pfanne leeren | 3. Wenden | 4. Stücke abtrennen und auf Teller anrichten | 5. Geniessen",
     "Bild": "https://www.einfachbacken.de/sites/einfachbacken.de/files/styles/full_width_tablet_4_3/public/2019-08/kaiserschmarrn.jpg?h=a1e1a043&itok=CHvFnq-t",
     "Bewertung": 8,
     "Kommentar": "Das beste oesterreichische Gericht",

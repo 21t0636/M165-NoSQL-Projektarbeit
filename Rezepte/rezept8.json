@@ -1,6 +1,8 @@
 {
     "Rezeptname": "Hot-Dog",
     "Rezeptkategorie": ["Grill", "Sandwich"],
+    "Zutaten": ["Wienerli", "Hot Dog Bun", "Ketchup", "Senf", "Mayonnaise"],
+    "Anleitung": "1. Wienerli kochen | 2. Wienerli in Bun legen | 3. Saucen nach Wahl dazu geben | 4. Geniessen",
     "Bild": "https://static.onecms.io/wp-content/uploads/sites/43/2022/09/09/268494_Basic-Air-Fryer-Hot-Dogs_Buckwheat-Queen_SERP_5844319_original-4x3-1.jpg",
     "Bewertung": 9.5,
     "Kommentar": "Raffael Barths Lieblingsessen",

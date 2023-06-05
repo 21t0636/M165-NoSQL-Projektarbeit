@@ -1,6 +1,8 @@
 {
     "Rezeptname": "Schwarzwaelder Kirschtorte",
     "Rezeptkategorie": ["Kuchen", "Desserts"],
+    "Zutaten": ["Zucker,", "Schokolade", "Kirschen", "Mehl", "Eier"],
+    "Anleitung": "1. Zutaten in eine Schüssel geben | 2. Gut rühren | 3. In Backofen schieben | 4. Geniessen",
     "Bild": "https://www.daskochrezept.de/sites/daskochrezept.de/files/styles/facebook/public/2021-06/schwarzwaelderkirschtorte_original_2.jpg?h=4521fff0&itok=plydTvT_",
     "Kommentar": "Dieses Rezept ist perfekt für Hobby-Baecker"
 }
