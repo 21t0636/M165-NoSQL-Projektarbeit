@@ -12,29 +12,29 @@ app.get('/', async (req, res) => {
     const { search } = req.query;
 
     let response;
+    
     if (search) {
-      response = await db.search('projektarbeit-rezepte', 'projektarbeit-rezepte', { q: search, include_docs: true });
+      const query = `\"Rezeptname\": \"${search}\"`;
+      console.log(query);
+      response = await db.search('projektarbeit-rezepte', 'projektarbeit-rezepte', { q: query, include_docs: true });
     } else {
       response = await db.list({ include_docs: true });
-    }
+    } 
 
-    //Alle Json-Dateien einfügen. Auskommentiert, weil die Jsons sonst immer wieder eingefügt werden würden!
-    //insertRezepte();
-    
     const docs = response.rows.map(row => row.doc);
     const tableRows = docs.map(doc => {
-      if (doc._id.startsWith("_")) 
+      if (doc._id.startsWith("_"))
         return;
 
       return `<tr>
-                <td>${doc.Rezeptname}</td>
-                <td>${doc.Rezeptkategorie}</td>
-                <td>${doc.Anleitung}</td>
-                <td>${doc.Kommentar}</td>
-                <td>${doc.Bewertung}</td>
-                <td>${doc.Zeitaufwand}</td>
-                <td>${doc.Herkunft}</td>
-                <td><img src="${doc.Bild}"></td>
+                <td>${(doc.Rezeptname == undefined) ? "-" : doc.Rezeptname}</td>
+                <td>${(doc.Rezeptkategorie == undefined) ? "-" : doc.Rezeptkategorie}</td>
+                <td>${(doc.Anleitung == undefined) ? "-" : doc.Anleitung}</td>
+                <td>${(doc.Kommentar == undefined) ? "-" : doc.Kommentar}</td>
+                <td>${(doc.Bewertung == undefined) ? "-" : doc.Bewertung}</td>
+                <td>${(doc.Zeitaufwand == undefined) ? "-" : doc.Zeitaufwand}</td>
+                <td>${(doc.Herkunft == undefined) ? "-" : doc.Herkunft}</td>
+                <td><img src="${(doc.Bild == undefined) ? "https://caspianpolicy.com/no-image.png" : doc.Bild}"></td>
               </tr>`
     }).join('');
 
@@ -56,8 +56,8 @@ app.get('/', async (req, res) => {
 
       img {
         object-fit: cover;
-        width: 100%;
-        height: 150px;
+        heigt: 100%;
+        width: 150px;
       }
 
       table {
@@ -114,28 +114,33 @@ app.get('/', async (req, res) => {
 });
 
 app.listen(port, () => {
+  if (process.argv.includes('--insert')) {
+    insertRezepte();
+    return;
+  }
+
   console.log(`Example app listening at http://localhost:${port}`);
 });
 
 function insertRezepte() {
   const fs = require('fs');
-    const path = require('path');
+  const path = require('path');
 
-    const rezepteOrdner = '../Rezepte'; 
-    const rezeptDateien = fs.readdirSync(rezepteOrdner)
-      .filter(file => path.extname(file) === '.json')
-      .map(file => path.join(rezepteOrdner, file));
+  const rezepteOrdner = '../Rezepte';
+  const rezeptDateien = fs.readdirSync(rezepteOrdner)
+    .filter(file => path.extname(file) === '.json')
+    .map(file => path.join(rezepteOrdner, file));
 
-    rezeptDateien.forEach(jsonFile => {
-      const jsonDocument = require(jsonFile);
+  rezeptDateien.forEach(jsonFile => {
+    const jsonDocument = require(jsonFile);
 
-      db.insert(jsonDocument, (err, body) => {
-        if (err) {
-          console.error(`Fehler beim Einfügen von ${jsonFile}:`, err);
-          return;
-        }
+    db.insert(jsonDocument, (err, body) => {
+      if (err) {
+        console.error(`Fehler beim Einfügen von ${jsonFile}:`, err);
+        return;
+      }
 
-        console.log(`JSON-Datei erfolgreich eingefügt: ${jsonFile}`);
-      });
+      console.log(`JSON-Datei erfolgreich eingefügt: ${jsonFile}`);
     });
+  });
 }
